@@ -1,35 +1,30 @@
 
   const padKeys = document.querySelectorAll('div[data-key]');
 
-  function clickPlay () {
-
-  }
 
   document.onkeydown = (event) => {
       
-        // console.log(padKeys.dataset.key);
-      let recoverKey = event.keyCode;
-      let keyPlay = document.querySelector(`div[data-key='${recoverKey}']`);
-     console.log(recoverKey);
+
+      const recoverKey = event.keyCode;
+      const keyPlay = document.querySelector(`div[data-key='${recoverKey}']`);
+      const myAudio = document.querySelector(`audio[data-key="${recoverKey}"]`);
+
+     console.log(myAudio);
       
      if(keyPlay) {
       keyPlay.classList.add('playing');
+      myAudio.play();
+ 
      }
-
-    document.onkeyup = (event) => {
-      keyPlay.classList.remove('playing');
-    };
-
-
-  padKeys.forEach(padKey => {
-    let keyValue = parseInt(padKey.dataset.key);
-
-    if (recoverKey === keyValue) {
-        keyPlay.classList.add('playing');
-      } else {
-        
-      }
-
-  })
 }
 
+
+    document.onkeyup = () => {
+      const keyPlays = document.querySelectorAll('.key');
+
+      keyPlays.forEach((keyPlay => {
+        keyPlay.classList.remove('playing');
+      
+      }));
+
+    };
